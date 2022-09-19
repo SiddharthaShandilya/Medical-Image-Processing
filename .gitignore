@@ -142,8 +142,8 @@ src.egg-info
 
 # data processign file is shifted to 
 
-Artifacts/raw_data/ct scan/CT_COVID/*
-Artifacts/raw_data/ct scan/CT_NonCOVID/*
+Artifacts/raw_data/ct_scan/CT_COVID/*
+Artifacts/raw_data/ct_scan/CT_NonCOVID/*
 Artifacts/raw_data/chest-x-ray/Chest_COVID/*
 Artifacts/raw_data/chest-x-ray/Chest_NonCOVID/*
 uploads/*

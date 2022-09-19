@@ -1,0 +1,20 @@
+
+artifacts:
+  ARTIFACTS_DIR: artifacts
+  TRAINED_MODEL_DIR: model
+  BASE_MODEL_DIR: base_model
+  BASE_MODEL_NAME: inception_ct.h5
+  UPDATED_BASE_MODEL_NAME: updated_inception_ct.h5
+  CHECKPOINT_DIR: checkpoints
+  BASE_LOG_DIR: base_model_dir
+  TENSORBOARD_ROOT_LOG_DIR: tensorboard_log_dir
+  CALLBACKS_DIR: callbacks
+  DATA_DIR: data
+
+source_download_dirs:
+  - ../outside_data/raw_data_medical_image_processing/chest-x-ray/
+  - ../outside_data/raw_data_medical_image_processing/ct_scan
+
+local_data_dirs:
+  - Artifacts/raw_data/chest-x-ray
+  - Artifacts/raw_data/ct_scan

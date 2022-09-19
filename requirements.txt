@@ -8,3 +8,9 @@ gevent
 jupyter
 sklearn
 seaborn
+dvc
+
+
+################## local packages
+
+-e .
