@@ -1,6 +1,7 @@
 $(document).ready(function () {
     // Init
     $('.image-section').hide();
+    $('.inputbox').hide();
     $('.loader').hide();
     $('#result').hide();
 
@@ -19,6 +20,7 @@ $(document).ready(function () {
     $("#imageUpload").change(function () {
         $('.image-section').show();
         $('#btn-predict').show();
+        $('.inputbox').show();
         $('#result').text('');
         $('#result').hide();
         readURL(this);
@@ -27,7 +29,10 @@ $(document).ready(function () {
     // Predict
     $('#btn-predict').click(function () {
         var form_data = new FormData($('#upload-file')[0]);
-
+        
+        //var model = new FormData($('#upload-file'));
+        console.log($(form_data));
+        
         // Show loading animation
         $(this).hide();
         $('.loader').show();
