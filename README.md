@@ -14,6 +14,10 @@ conda create --prefix ./env python=3.7 -y
 ```bash
 source activate ./env
 ```
+or
+```bash
+conda activate ./env
+```
 ### install Packages 
 ```bash
 pip install -r requirements.txt
