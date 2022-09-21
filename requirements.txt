@@ -9,6 +9,9 @@ jupyter
 sklearn
 seaborn
 dvc
+tqdm
+PyYAML
+boto3
 
 
 ################## local packages
