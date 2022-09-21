@@ -1,8 +1,23 @@
 import tensorflow as tf
 import logging
 
+#-------------------------------------------------------------------------------
+#   train_valid_generator
+#-------------------------------------------------------------------------------
+
+
 def train_valid_generator(data_dir,IMAGE_SIZE,BATCH_SIZE, do_data_augmentation):
-    
+    '''
+    train_valid_generator allows users to create multiple images from the existing image using data augmentation
+    Parameters
+    ----------
+    INPUT : data_dir : Location of the data directory || String
+            IMAGE_SIZE : THe image size required for training image. || INT
+            BATCH_SIZE : Number of images used for training in one batch. || INT
+            do_data_augmentation : True or Flase || Boolean
+
+    Output : Sends two variable train_generator and valid_generator having augmented image.
+    '''    
     datagenerator_kwargs = dict(
         rescale = 1./255, 
         validation_split=0.20
