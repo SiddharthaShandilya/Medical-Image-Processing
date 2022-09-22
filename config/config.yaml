@@ -9,12 +9,12 @@ artifacts:
   BASE_LOG_DIR: base_model_dir
   TENSORBOARD_ROOT_LOG_DIR: tensorboard_log_dir
   CALLBACKS_DIR: callbacks
-  DATA_DIR: data
+  DATA_DIR: Artifacts/raw_data/ct_scan
 
 source_download_dirs:
-  - ../outside_data/raw_data_medical_image_processing/chest-x-ray/
+  - ../outside_data/raw_data_medical_image_processing/chest-x-ray
   - ../outside_data/raw_data_medical_image_processing/ct_scan
-
+  
 local_data_dirs:
   - Artifacts/raw_data/chest-x-ray
   - Artifacts/raw_data/ct_scan
