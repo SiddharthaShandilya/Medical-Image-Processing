@@ -100,7 +100,7 @@ def load_full_model(untrained_full_model_path):
 #   get_unique_path_to_save_model
 #-------------------------------------------------------------------------------
 
-def get_unique_path_to_save_model(trained_model_dir, model_name="model"):
+def get_unique_path_to_save_model(trained_model_dir, model_name="inceptionv3_covid_ct_model"):
     '''
     get_unique_path_to_save_model allows users to create multiple models path on the basis of timestamp. 
     Parameters
