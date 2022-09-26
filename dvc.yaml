@@ -7,6 +7,8 @@ stages:
       - config/config.yaml
     outs:
       - Artifacts/raw_data/ct_scan/
+      - Artifacts/raw_data/chest-x-ray
+      - logs/stage_01_log.log
 
   prepare_base_model:
     cmd: python src/stage_02_prepare_base_model.py --config=config/config.yaml --params=params.yaml
@@ -21,6 +23,7 @@ stages:
     outs:
       - artifacts/base_model/updated_inception_ct.h5
       - artifacts/base_model/inception_ct.h5
+      - logs/stage_02_log.log
 
   prepare_callbacks:
     cmd: python src/stage_03_prepare_callbacks.py --config=config/config.yaml --params=params.yaml
@@ -33,6 +36,8 @@ stages:
     outs:
       - artifacts/callbacks/checkpoint_cb.cb
       - artifacts/callbacks/tensorboard_cb.cb
+      - logs/stage_03_log.log
+      
 
   train:
     cmd: python src/stage_04_train.py --config=config/config.yaml --params=params.yaml
@@ -44,7 +49,7 @@ stages:
       - src/utils/data_management.py
       - config/config.yaml
       - Artifacts/raw_data/ct_scan/
-      - artifacts/base_model/inception_ct.h5
+      - artifacts/base_model/updated_inception_ct.h5
       - artifacts/callbacks/checkpoint_cb.cb
       - artifacts/callbacks/tensorboard_cb.cb
     params:
@@ -54,3 +59,6 @@ stages:
       - AUGMENTATION
     outs:
       - artifacts/model
+      - Artifacts/checkpoints/ckpt_model.h5
+      - Artifacts/tensorboard_log_dir/
+      - logs/stage_04_log.log

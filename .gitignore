@@ -148,3 +148,13 @@ Artifacts/raw_data/chest-x-ray/Chest_COVID/*
 Artifacts/raw_data/chest-x-ray/Chest_NonCOVID/*
 uploads/*
 Artifacts/models/*
+Artifacts/model/model_at_Fri_Sep_23_14_30_57_2022_.h5
+Artifacts/callbacks/checkpoint_cb.cb
+Artifacts/callbacks/tensorboard_cb.cb
+Artifacts/tensorboard_log_dir/*
+Artifacts/checkpoints/ckpt_model.h5
+Artifacts/tensorboard_log_dir/*
+src/stage_05_test_model.py
+.dvc/
+Artifacts/checkpoints/ckpt_model.h5
+Research/models
