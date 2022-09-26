@@ -12,7 +12,7 @@ dvc
 tqdm
 PyYAML
 boto3
-
+Image
 
 ################## local packages
 

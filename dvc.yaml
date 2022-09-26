@@ -7,7 +7,6 @@ stages:
       - config/config.yaml
     outs:
       - Artifacts/raw_data/ct_scan/
-      - Artifacts/raw_data/chest-x-ray
       - logs/stage_01_log.log
 
   prepare_base_model:

@@ -158,3 +158,5 @@ src/stage_05_test_model.py
 .dvc/
 Artifacts/checkpoints/ckpt_model.h5
 Research/models
+Artifacts/base_model/inception_ct.h5
+Artifacts/base_model/updated_inception_ct.h5

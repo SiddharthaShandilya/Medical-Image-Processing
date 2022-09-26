@@ -1,5 +1,5 @@
 from src.utils.all_utils import read_yaml, create_directory
-from src.utils.models import get_VGG_16_model, prepare_model
+from src.utils.models import get_inception_model, prepare_model
 import argparse
 import os
 import logging
@@ -8,7 +8,7 @@ import io
 logging_str = "[%(asctime)s: %(levelname)s: %(module)s]: %(message)s"
 log_dir = "logs"
 os.makedirs(log_dir, exist_ok=True)
-logging.basicConfig(filename=os.path.join(log_dir, 'running_logs.log'), level=logging.INFO, format=logging_str,
+logging.basicConfig(filename=os.path.join(log_dir, 'stage_02_log.log'), level=logging.INFO, format=logging_str,
                     filemode="a")
 
 def prepare_base_model(config_path, params_path):
@@ -27,7 +27,7 @@ def prepare_base_model(config_path, params_path):
 
     base_model_path = os.path.join(base_model_dir_path, base_model_name)
 
-    model = get_VGG_16_model(input_shape=params["IMAGE_SIZE"], model_path=base_model_path)
+    model = get_inception_model(input_shape=params["IMAGE_SIZE"], model_path=base_model_path)
 
     full_model = prepare_model(
         model,

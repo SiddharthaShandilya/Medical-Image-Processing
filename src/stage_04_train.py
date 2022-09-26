@@ -9,7 +9,7 @@ import logging
 logging_str = "[%(asctime)s: %(levelname)s: %(module)s]: %(message)s"
 log_dir = "logs"
 os.makedirs(log_dir, exist_ok=True)
-logging.basicConfig(filename=os.path.join(log_dir, 'running_logs.log'), level=logging.INFO, format=logging_str,
+logging.basicConfig(filename=os.path.join(log_dir, 'stage_04_log.log'), level=logging.INFO, format=logging_str,
                     filemode="a")
 
 def train_model(config_path, params_path):
