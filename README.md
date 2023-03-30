@@ -1,8 +1,8 @@
-# DVC - DL - TF - AIOPS demo
+# Medical-Image-Processing
+The Covid Detection application
 
-download data --> [source](https://drive.google.com/drive/u/5/folders/1tz4IOoJKdi999IRdqJY04VOifyllRzj1
-)
-
+# Installation Guide
+Download Conda -> [source](https://repo.anaconda.com/archive/Anaconda3-2022.05-Windows-x86_64.exe)
 ## commands - 
 
 ### create a new env
@@ -12,9 +12,12 @@ conda create --prefix ./env python=3.7 -y
 
 ### activate new env
 ```bash
-source activate ./env
+conda activate ./env
 ```
-
+### install Packages 
+```bash
+pip install -r requirements.txt
+```
 ### init DVC
 ```bash
 git init
