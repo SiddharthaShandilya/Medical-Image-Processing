@@ -13,7 +13,7 @@ tqdm
 PyYAML
 boto3
 Image
-
+mlflow
 ################## local packages
 
 -e .
