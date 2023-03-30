@@ -31,7 +31,6 @@ stages:
       - src/utils/all_utils.py
       - src/utils/callbacks.py
       - config/config.yaml
-      - params.yaml
     outs:
       - artifacts/callbacks/checkpoint_cb.cb
       - artifacts/callbacks/tensorboard_cb.cb
