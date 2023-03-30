@@ -1,10 +1,13 @@
-from src.utils.all_utils import read_yaml, create_directory
-from src.utils.models import load_full_model, get_unique_path_to_save_model
+import argparse
+import logging
+import os
+
+import mlflow
+import mlflow.keras
+from src.utils.all_utils import create_directory, read_yaml
 from src.utils.callbacks import get_callbacks
 from src.utils.data_management import train_valid_generator
-import argparse
-import os
-import logging
+from src.utils.models import get_unique_path_to_save_model, load_full_model
 
 logging_str = "[%(asctime)s: %(levelname)s: %(module)s]: %(message)s"
 log_dir = "logs"
@@ -12,7 +15,7 @@ os.makedirs(log_dir, exist_ok=True)
 logging.basicConfig(filename=os.path.join(log_dir, 'stage_04_log.log'), level=logging.INFO, format=logging_str,
                     filemode="a")
 
-def train_model(config_path, params_path):
+def train_model(config_path: str, params_path: str):
     config = read_yaml(config_path)
     params = read_yaml(params_path)
 
@@ -40,23 +43,37 @@ def train_model(config_path, params_path):
     steps_per_epoch = train_generator.samples // train_generator.batch_size
     validation_steps = valid_generator.samples // valid_generator.batch_size
 
-    model.fit(
-        train_generator,
-        validation_data=valid_generator,
-        epochs=params["EPOCHS"], 
-        steps_per_epoch=steps_per_epoch, 
-        validation_steps=validation_steps,
-        callbacks=callbacks
-    )
-    logging.info(f"training completed")
+    with mlflow.start_run():
+        mlflow.log_params(params)
 
-    trained_model_dir = os.path.join(artifacts_dir, artifacts["TRAINED_MODEL_DIR"])
-    create_directory([trained_model_dir])
+        model.fit(
+            train_generator,
+            validation_data=valid_generator,
+            epochs=params["EPOCHS"], 
+            steps_per_epoch=steps_per_epoch, 
+            validation_steps=validation_steps,
+            callbacks=callbacks
+        )
 
-    model_file_path = get_unique_path_to_save_model(trained_model_dir)
-    model.save(model_file_path)
-    logging.info(f"trained model is saved at: {model_file_path}")
+        mlflow.keras.log_model(model, "model")
 
+        trained_model_dir = os.path.join(artifacts_dir, artifacts["TRAINED_MODEL_DIR"])
+        create_directory([trained_model_dir])
+
+        model_file_path = get_unique_path_to_save_model(trained_model_dir)
+        model.save(model_file_path)
+
+        metrics = {
+                    'val_loss': model.history.history['val_loss'][-1],
+                    'val_acc': model.history.history['val_accuracy'][-1],
+                    'train_loss': model.history.history['loss'][-1],
+                    'train_acc': model.history.history['accuracy'][-1]
+                }
+        mlflow.log_metrics(metrics)
+
+        mlflow.log_artifact(model_file_path, "model")
+        
+        logging.info(f"training completed and model is saved with run_id: {mlflow.active_run().info.run_id}")
 
 if __name__ == '__main__':
     args = argparse.ArgumentParser()
